@@ -1,0 +1,10 @@
+.complaint-history {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .complaint-history ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  

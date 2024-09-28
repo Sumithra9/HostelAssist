@@ -1,0 +1,10 @@
+.complaint-form {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .complaint-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
