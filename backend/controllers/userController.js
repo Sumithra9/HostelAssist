@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const bcrypt=require('bcrypt');
 
 // Generate JWT token
 const generateToken = (id) => {
@@ -22,7 +23,6 @@ const registerUser = asyncHandler(async (req, res) => {
         email,
         password,
         hostelBlock,
-        roomNumber,
         role
     });
 
