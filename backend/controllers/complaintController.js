@@ -3,17 +3,22 @@ const Complaint = require('../models/Complaint');
 // @desc    Get all complaints (for admin)
 const getAllComplaints = async (req, res) => {
   try {
+    const { category, hostelBlock } = req.query; // Destructure the query parameters
+
     let query = {};
-    if (req.query.category) {
-      query.category = req.query.category;
+    if (category) {
+      query.category = category; // Filter by category if provided
     }
+    if (hostelBlock) {
+      query.hostelBlock = hostelBlock; // Filter by hostel block if provided
+    }
+
     const complaints = await Complaint.find(query);
     res.json(complaints);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
   }
 };
-
 
 // @desc    Get complaints for a specific student
 const getStudentComplaints = async (req, res) => {

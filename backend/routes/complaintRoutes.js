@@ -4,8 +4,12 @@ const { protect, admin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+// Route for student-specific complaints
+router.route('/student')
+  .get(protect, getStudentComplaints);      // For students to view their own complaints
+
+// Route for creating complaints and fetching all (admin) complaints
 router.route('/')
-  .get(protect, getStudentComplaints)       // For students to view their complaints
   .post(protect, createComplaint);          // For students to create complaints
 
 router.route('/admin')
