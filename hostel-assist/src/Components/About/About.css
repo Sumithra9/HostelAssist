@@ -1,0 +1,65 @@
+.about-us {
+    padding: 50px 20px;
+    background-color: #f9f9f9;  /* Light background for contrast */
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.about-us h2 {
+    font-size: 32px;
+    color: #2c3e50; /* Dark blue shade */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.about-us p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.about-us ul {
+    text-align: left;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.about-us ul li {
+    font-size: 18px;
+    color: #333;
+    list-style-type: none;
+    padding: 10px 0;
+    position: relative;
+}
+
+.about-us ul li::before {
+    content: "✔";  /* Green tick icon */
+    color: #27ae60;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.about-us strong {
+    color: #2980b9;  /* Highlighted blue text */
+}
+
+@media screen and (max-width: 768px) {
+    .about-us {
+        padding: 30px 15px;
+    }
+
+    .about-us h2 {
+        font-size: 28px;
+    }
+
+    .about-us p, 
+    .about-us ul li {
+        font-size: 16px;
+    }
+}

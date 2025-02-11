@@ -1,0 +1,102 @@
+.header-container {
+    height: 100vh; /* Full viewport height */
+    background-size: cover;
+    background-repeat: no-repeat; /* Ensure the image covers the entire section */
+    background-position: center; /* Keep the image centered */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    margin-top: 80px;
+    
+  }
+  
+  .header-content {
+    /* Transparent dark overlay for readability */
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    margin-bottom:50px;
+    font-weight: bold;
+  }
+  
+  .header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color:BLACK;
+  }
+  
+  .header-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: bolder;
+    line-height: 30px;
+  }
+  
+  .get-started-button {
+    background-color: #31304D;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+  }
+  
+  .get-started-button:hover {
+    background-color: #636d81;
+    transform: scale(1.1);
+    transition: 1s;
+  }
+  .get-started-button::after {
+    content: '→'; /* Arrow symbol */
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+  }
+  /* Styles for content below the header section */
+  .page-content {
+    padding: 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .header-content h1 {
+      font-size: 2rem; /* Smaller font size for tablets */
+    }
+  
+    .header-content p {
+      font-size: 1rem; /* Smaller font size for tablets */
+    }
+  
+    .get-started-button {
+      font-size: 0.9rem; /* Smaller font size for tablets */
+      padding: 0.5rem 1.5rem; /* Adjust padding for tablets */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-content {
+      padding: 1rem; /* Reduce padding for mobile screens */
+    }
+  
+    .header-content h1 {
+      font-size: 1.5rem; /* Further reduced font size for mobile */
+    }
+  
+    .header-content p {
+      font-size: 0.9rem; /* Further reduced font size for mobile */
+      line-height: 24px; /* Adjust line-height for readability on mobile */
+    }
+  
+    .get-started-button {
+      font-size: 0.8rem; /* Further reduced font size for mobile */
+      padding: 0.5rem 1rem; /* Further adjusted padding for mobile */
+    }
+  }
+  

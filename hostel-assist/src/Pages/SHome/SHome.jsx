@@ -1,24 +1,43 @@
-// /src/Pages/SHome/SHome.jsx
 
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// /src/SHome.jsx
+
+import React, { useRef } from 'react';
 import './SHome.css';
-import SNavBar from '../../Components/SNavBar/SNavBar'; // Importing the SNavbar component
+import SFaq from '../../Components/SFaq/SFaq';
+import ContactUs from '../../Components/ContactUs/ContactUs';
+import SHeader from '../../Components/SHeader/SHeader';
+import About from '../../Components/About/About';
+import SNavBar from '../../Components/SNavBar/SNavBar'; 
+import SFooter from '../../Components/SFooter/SFooter';
 
 const SHome = () => {
-  return (
-    <>
-      <SNavBar /> {/* Add SNavbar here for routing */}
+  const aboutRef = useRef(null);
+  const contactusRef = useRef(null);
+  const faqRef = useRef(null);
+   const headerRef = useRef(null);
+  
 
-      <Routes>
-        {/* Placeholder Routes - You can add actual pages later */}
-        <Route path="/complaints" element={<div>Complaints Page</div>} /> {/* Complaints Page */}
-        <Route path="/profile" element={<div>Profile Page</div>} /> {/* Profile Page */}
-        <Route path="/shistory" element={<div>History Page</div>} /> {/* Profile Page */}
+  const scrollToRef = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div>
+      <SNavBar scrollToRef={scrollToRef} refs={{
+         about: aboutRef,
+        contact: contactusRef,
+        faq: faqRef,
+         header: headerRef,
         
-      </Routes>
-      </>
+      }} />
+      <SHeader ref={headerRef} /> 
+      <div ref={faqRef}><SFaq /></div>
+      <div ref={contactusRef}><ContactUs /></div>
+      <div ref={aboutRef}><About /></div>
+      <SFooter/> 
+    </div>
   );
 };
 
 export default SHome;
+
