@@ -1,9 +1,10 @@
 import React from "react";
 import "./Login.css";
-
+import { assets } from "../../assets/assets";
 const Login = () => {
   return (
-    <div className="login-container">
+    <div className="login-container" >
+      <img src={assets.StudLogin}/>
       <div className="login-section student-section">
         <div className="content">
           <h2>Student Login</h2>
