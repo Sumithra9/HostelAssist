@@ -22,7 +22,7 @@ const Login = () => {
         <div className="login-box">
         <h2>Admin</h2>
           <div className="circle">
-            <img src={assets.StudLogin} alt="Admin" />
+            <img src={assets.AdminLogin} alt="Admin" />
           </div>
           <button onClick={() => setShowALogin(true)}>Login</button> {/* Show admin login popup */}
         </div>
