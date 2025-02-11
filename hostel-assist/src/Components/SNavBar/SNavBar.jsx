@@ -21,8 +21,6 @@ const SNavBar = ({ scrollToRef, refs }) => {
         <li onClick={() => scrollToRef(refs.faq)}>FAQs</li>
         <li onClick={() => scrollToRef(refs.contact)}>Contact Us</li>
         <li onClick={() => scrollToRef(refs.about)}>About Us</li>
-
-        
       </div>
     </div>
   );
