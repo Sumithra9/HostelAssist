@@ -1,0 +1,96 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #2a2a72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Container for Login Sections */
+  .login-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Split-Screen Sections */
+  .login-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    transition: 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  /* Glassmorphism Effect */
+  .student-section, .admin-section {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Hover Effects */
+  .student-section:hover, .admin-section:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Text Content */
+  .content {
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button Styling */
+  .login-btn {
+    background: white;
+    color: #1e3a8a;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+  }
+  
+  .login-btn:hover {
+    background: #1e3a8a;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      height: auto;
+      width: 90%;
+    }
+  
+    .login-section {
+      padding: 30px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+  

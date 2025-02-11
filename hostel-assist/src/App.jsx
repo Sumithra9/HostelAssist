@@ -8,12 +8,12 @@ import Login from "./Pages/Login/Login";
 const App = () => {
   return (
     <>
-    <Router>
+  
       <Routes>
         <Route path="/" element={<Login />} /> 
         
       </Routes>
-    </Router>
+   
     </>
   );
 };
