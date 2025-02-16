@@ -22,7 +22,7 @@ const SHome = () => {
   };
 
   return (
-    <div>
+    <div className='home-page'>
       <SNavBar scrollToRef={scrollToRef} refs={{
          about: aboutRef,
         contact: contactusRef,
