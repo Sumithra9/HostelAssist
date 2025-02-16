@@ -1,45 +1,53 @@
+/* Root container - Ensures full width */
 #root {
-  max-width: 1280px;
+  width: 100vw;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
+
 /* Prevent horizontal scrolling */
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   width: 100vw;
+  height: 100vh;
 }
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
-}
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
+/* Apply box-sizing globally */
 * {
   font-family: 'Montserrat', sans-serif;
-  font-size:medium;
+  font-size: medium;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
+
+/* Set background */
+body {
   background-color: #ede4e4;
-
-
-  
-/* App Container */
 }
+
+/* App Container */
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100vw;
 }
 
 /* Main Content */
 .main-content {
   flex: 1;
   padding: 20px;
+}
+
+/* Fixes right-side gap */
+.header, .footer, .faq, .aboutus, .contactus {
+  width: 100vw;
+  max-width: 100%;
 }
 
 /* Centering Content */
@@ -63,4 +71,3 @@ body{
 .button:hover {
   background-color: #ff3b2f;
 }
-

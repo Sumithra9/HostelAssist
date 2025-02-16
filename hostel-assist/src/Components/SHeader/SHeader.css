@@ -1,7 +1,12 @@
 /* Full-screen header container with background image */
 .header-container {
-  height: 100vh;
-  width: 100vw; /* Ensures full width */
+  width: 100vw; /* Ensure full viewport width */  
+  height: 100vh; /* Ensure full viewport height */
+  max-width: 100%;   
+  background-size: cover; /* Ensures it fully covers the container */  
+  background-position: center; /* Centers the image */  
+  background-repeat: no-repeat; /* Prevents tiling */  
+  overflow-x: hidden; /* Prevents horizontal scroll issues */ 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,9 +17,9 @@
   position: relative;
   margin: 0;
   padding: 0;
-  left: 0; /* Ensure it starts from the very left */
+  left: 0;
+  overflow: hidden; /* Prevents unwanted scrollbars */
 }
-
 
 /* Overlay for better text visibility */
 .header-container::before {
@@ -24,7 +29,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.65); /* Dark overlay */
   z-index: 1;
 }
 
@@ -36,10 +41,18 @@
   padding: 2rem;
   border-radius: 10px;
   max-width: 600px;
-  width: 100%;
+  width: 90%; /* Allows flexibility */
   font-weight: bold;
   text-align: center;
 }
+
+/* Ensure no unwanted horizontal scrolling */
+@media (max-width: 768px) {
+  .header-container {
+    width: 100%; /* Ensures full coverage */
+  }
+}
+
 
 /* Main heading */
 .header-content h1 {
@@ -56,11 +69,11 @@
   line-height: 30px;
 }
 
-/* Button container to space buttons separately */
+/* Button container to space buttons properly */
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 80px; /* Proper space between buttons */
+  gap: 20px; /* Proper space between buttons */
   flex-wrap: wrap;
 }
 
@@ -69,7 +82,7 @@
   background-color: #31304D;
   color: white;
   padding: 12px 30px;
-  margin: 25px;
+  margin: 10px; /* Reduce extra space */
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -94,7 +107,30 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .header-content {
+    max-width: 80%;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .header-content p {
+    font-size: 1.1rem;
+  }
+
+  .header-content button {
+    font-size: 1rem;
+    padding: 10px 24px;
+  }
+}
+
 @media (max-width: 768px) {
+  .header-content {
+    max-width: 90%;
+  }
+
   .header-content h1 {
     font-size: 2rem;
   }
@@ -109,13 +145,14 @@
   }
 
   .button-container {
-    gap: 40px; /* Reduce space on smaller screens */
+    gap: 15px; /* Reduce space on smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .header-content {
     padding: 1rem;
+    max-width: 95%;
   }
 
   .header-content h1 {
@@ -135,6 +172,6 @@
 
   .button-container {
     flex-direction: column;
-    gap: 20px; /* Separate buttons on mobile */
+    gap: 10px; /* Separate buttons on mobile */
   }
 }

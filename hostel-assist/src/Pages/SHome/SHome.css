@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* Main Container */
+  .SHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
