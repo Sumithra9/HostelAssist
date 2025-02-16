@@ -28,12 +28,12 @@
 }
 
 .tab-buttons .active {
-  background-color: #161A30;
+  background-color:#2d3355 ;
   color: white;
 }
 
 .tab-buttons button:hover {
-  background-color: #2d3355;
+  background-color:  #161A30;
   color: white;
 }
 
@@ -91,7 +91,7 @@ th {
 }
 
 .back-button:hover {
-  background-color:#2d3355;
+  background-color: #636d81;
 }
 
 /* Star Rating */
@@ -121,7 +121,7 @@ th {
 
 /* Submit Feedback Button */
 .submit-feedback {
-  background-color: #161A30;
+  background-color: #31304D;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -133,7 +133,7 @@ th {
 }
 
 .submit-feedback:hover {
-  background-color: #2d3355;
+  background-color: #636d81;
 }
 
 .submit-feedback:disabled {

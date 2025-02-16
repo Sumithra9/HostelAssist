@@ -1,12 +1,10 @@
-/* /src/Components/SNavBar/SNavBar.css */
-
 .s-navbar {
   z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #161A30; /* Dark background */
+  background-color: #161A30;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +16,7 @@
 .s-logo h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #F0ECE5; /* Light color */
+  color: #F0ECE5;
   cursor: pointer;
 }
 
@@ -26,18 +24,17 @@
 .s-navbar-links {
   display: flex;
   align-items: center;
-  gap: 10px; /* Reduced space between items */
-  padding-right: 50px; /* Adjusted padding */
+  gap: 10px;
+  padding-right: 50px;
 }
 
-/* Uniform Styling for Links & List Items */
 .s-navbar-links li {
   list-style: none;
   font-size: 16px;
   font-weight: 600;
-  color: #D1D5DB; /* Light color */
+  color: #D1D5DB;
   text-decoration: none;
-  padding: 8px 12px; /* Adjusted padding */
+  padding: 8px 12px;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
   display: flex;
@@ -54,7 +51,27 @@
 /* Hover Effects */
 .s-navbar-links li:hover,
 .s-navbar-links li a:hover {
-  color: #B6BBC4; /* Hover color */
+  color: #B6BBC4;
+}
+
+/* Profile Icon Styling */
+.profile-icon {
+  font-size: 22px; /* Adjust icon size */
+}
+
+.profile-icon a {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.icon {
+  color: #D1D5DB;
+  transition: color 0.3s ease-in-out;
+}
+
+.profile-icon:hover .icon {
+  color: #B6BBC4;
 }
 
 /* Responsive Navbar */
