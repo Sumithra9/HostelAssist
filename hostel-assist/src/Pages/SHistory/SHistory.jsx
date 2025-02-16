@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigation hook
+import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa"; // Import delete icon
 import "./SHistory.css";
 
 const SHistory = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const [pendingComplaints, setPendingComplaints] = useState([
     { id: 1, type: "Plumbing", date: "2024-02-16" },
@@ -29,7 +30,7 @@ const SHistory = () => {
       historyComplaints={historyComplaints}
       deleteComplaint={deleteComplaint}
       submitFeedback={submitFeedback}
-      navigate={navigate} // Pass navigate function to child component
+      navigate={navigate}
     />
   );
 };
@@ -52,7 +53,6 @@ const SHistoryComponent = ({ pendingComplaints, historyComplaints, deleteComplai
       {/* Complaint Status (Pending Complaints) */}
       {activeTab === "status" ? (
         <div className="complaint-table">
-          <h2>Pending Complaints</h2>
           {pendingComplaints.length > 0 ? (
             <table>
               <thead>
@@ -70,9 +70,7 @@ const SHistoryComponent = ({ pendingComplaints, historyComplaints, deleteComplai
                     <td>{complaint.type}</td>
                     <td>{complaint.date}</td>
                     <td>
-                      <button className="delete-btn" onClick={() => deleteComplaint(complaint.id)}>
-                        Delete
-                      </button>
+                      <FaTrash className="delete-icon" onClick={() => deleteComplaint(complaint.id)} />
                     </td>
                   </tr>
                 ))}
@@ -85,7 +83,6 @@ const SHistoryComponent = ({ pendingComplaints, historyComplaints, deleteComplai
       ) : (
         /* Complaint History */
         <div className="complaint-table">
-          <h2>Complaint History</h2>
           {historyComplaints.length > 0 ? (
             <table>
               <thead>
