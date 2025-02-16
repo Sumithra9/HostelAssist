@@ -24,9 +24,11 @@ html, body, #root {
   font-size:medium;
 }
 body{
-  background-color:#F0ECE5
-}
+  background-color: #ede4e4;
+
+  margin-left:300px;
 /* App Container */
+}
 .app {
   display: flex;
   flex-direction: column;
