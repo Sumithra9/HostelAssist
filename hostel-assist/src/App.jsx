@@ -6,7 +6,7 @@ import SHome from './Pages/SHome/SHome';
 import Login from "./Pages/Login/Login";
 import SComplaint from './Pages/SComplaint/SComplaint';
 import SProfile from './Pages/SProfile/SProfile';
-
+import SHistory from './Pages/SHistory/SHistory';
 
 
 const App = () => {
@@ -17,6 +17,8 @@ const App = () => {
         <Route path="/student" element={<SHome />} />
         <Route path="/complaints" element={<SComplaint />} />
         <Route path="/profile" element={<SProfile />} />
+        <Route path="/shistory" element={<SHistory />} />
+
 
 </Routes>
 
