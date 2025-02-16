@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { assets } from "../../assets/assets";
 import SLoginPopup from "../../Components/SLoginPopup/SLoginPopup";
 import ALoginPopup from "../../Components/ALoginPopup/ALoginPopup";
@@ -9,29 +9,45 @@ const Login = () => {
   const [showALogin, setShowALogin] = useState(false);
 
   return (
-    <>
-    <div className="login-container">
-      <div className="login-options">
-        <div className="login-box">
-        <h2>Student</h2>
-          <div className="circle">
-            <img src={assets.StudLogin} alt="Student" />
-          </div>
-          <button onClick={() => setShowSLogin(true)}>Login</button> {/* Show user login popup */}
+    <div className="login-page">
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Welcome to Hostel Assist</h1>
+          <p>Effortless Complaint Management for a Better Hostel Experience</p>
+          <button className="cta-button" onClick={() => setShowSLogin(true)}>Get Started</button>
         </div>
-        <div className="login-box">
-        <h2>Admin</h2>
-          <div className="circle">
-            <img src={assets.AdminLogin} alt="Admin" />
+      </section>
+<br/>
+<br/>
+<br/>
+      {/* Login Options */}
+      <div className="login-container">
+        
+        <br/>
+        <div className="login-options">
+          <div className="login-box">
+            <h2>Student</h2>
+            <div className="circle">
+              <img src={assets.image} alt="Student" />
+            </div>
+            <button onClick={() => setShowSLogin(true)}>Login</button>
           </div>
-          <button onClick={() => setShowALogin(true)}>Login</button> {/* Show admin login popup */}
+          
+          <div className="login-box">
+            <h2>Admin</h2>
+            <div className="circle">
+              <img src={assets.image2} alt="Admin" />
+            </div>
+            <button onClick={() => setShowALogin(true)}>Login</button>
+          </div>
         </div>
       </div>
-      {showSLogin && <SLoginPopup setShowLogin={setShowSLogin} />} {/* User login popup */}
-      {showALogin && <ALoginPopup setShowLogin={setShowALogin} />} {/* Admin login popup */}
-    </div>
-    </>
-  )
-}
 
-export default Login
+      {showSLogin && <SLoginPopup setShowLogin={setShowSLogin} />}
+      {showALogin && <ALoginPopup setShowLogin={setShowALogin} />}
+    </div>
+  );
+};
+
+export default Login;
