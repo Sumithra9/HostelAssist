@@ -18,10 +18,12 @@ const Login = () => {
           <button className="cta-button" onClick={() => setShowSLogin(true)}>Get Started</button>
         </div>
       </section>
-
+<br/>
+<br/>
+<br/>
       {/* Login Options */}
       <div className="login-container">
-        <h2 id="select">Select Your Login</h2>
+        
         <br/>
         <div className="login-options">
           <div className="login-box">
