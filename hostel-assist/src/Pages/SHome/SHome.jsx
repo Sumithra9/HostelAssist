@@ -32,8 +32,8 @@ const SHome = () => {
       }} />
       <SHeader ref={headerRef} /> 
       <div ref={faqRef}><SFaq /></div>
-      <div ref={contactusRef}><ContactUs /></div>
       <div ref={aboutRef}><About /></div>
+      <div ref={contactusRef}><ContactUs /></div>
       <SFooter/> 
     </div>
   );

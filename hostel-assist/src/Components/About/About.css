@@ -1,6 +1,6 @@
 .about-us {
     padding: 50px 20px;
-    background-color: #f9f9f9;  /* Light background for contrast */
+    background-color:#B6BBC4;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -10,14 +10,14 @@
 
 .about-us h2 {
     font-size: 32px;
-    color: #2c3e50; /* Dark blue shade */
+    color: #161A30; /* Dark blue shade */
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
 .about-us p {
     font-size: 18px;
-    color: #555;
+    color: black;
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -39,14 +39,14 @@
 
 .about-us ul li::before {
     content: "✔";  /* Green tick icon */
-    color: #27ae60;
+    color: #161A30;
     font-size: 18px;
     font-weight: bold;
     margin-right: 10px;
 }
 
 .about-us strong {
-    color: #2980b9;  /* Highlighted blue text */
+    color: #03082e;  /* Highlighted blue text */
 }
 
 @media screen and (max-width: 768px) {

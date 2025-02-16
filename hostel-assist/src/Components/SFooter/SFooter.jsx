@@ -11,7 +11,6 @@ const SFooter = () => {
       </div>
 
       <div className="footer-content-center">
-          <h2>HostelAssist</h2>
           <ul>
             <li>Home</li>
             <li>About us</li>
