@@ -14,6 +14,7 @@ html, body {
   overflow-x: hidden;
   width: 100vw;
   height: 100vh;
+  background-color:#F0ECE5;
 }
 
 /* Apply box-sizing globally */
@@ -27,7 +28,7 @@ html, body {
 
 /* Set background */
 body {
-  background-color: #ede4e4;
+  background-color:#F0ECE5;
 }
 
 /* App Container */
