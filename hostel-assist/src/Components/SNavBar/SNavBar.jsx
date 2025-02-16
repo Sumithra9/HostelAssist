@@ -1,13 +1,14 @@
-// /src/Components/SNavbar/SNavbar.jsx
-
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome
+import { faUser } from '@fortawesome/free-solid-svg-icons'; // User icon
 import './SNavBar.css';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const SNavBar = ({ scrollToRef, refs }) => {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="s-navbar">
       <div className="s-logo">
@@ -15,13 +16,19 @@ const SNavBar = ({ scrollToRef, refs }) => {
       </div>
 
       <div className="s-navbar-links">
-        <li><Link to="/complaints">Post Complaint</Link></li> {/* Link to Complaints page */}
-        <li><Link to="/shistory">Complaint History</Link></li> {/* Link to Profile page */}
+        <li><Link to="/complaints">Post Complaint</Link></li>
+        <li><Link to="/shistory">Complaint History</Link></li>
         <li onClick={() => scrollToRef(refs.faq)}>FAQs</li>
         <li onClick={() => scrollToRef(refs.about)}>About Us</li>
         <li onClick={() => scrollToRef(refs.contact)}>Contact Us</li>
-        <li><Link to="/profile">Profile</Link></li> {/* Link to Profile page */}
-        <li><Link to="/" >Sign Out</Link></li>
+        <li><Link to="/">Sign Out</Link></li>
+
+        {/* Profile Icon Instead of "Profile" Text */}
+        <li className="profile-icon">
+          <Link to="/profile">
+            <FontAwesomeIcon icon={faUser} className="icon" />
+          </Link>
+        </li>
       </div>
     </div>
   );
