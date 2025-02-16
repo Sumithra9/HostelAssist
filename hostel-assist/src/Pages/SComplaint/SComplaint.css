@@ -41,7 +41,7 @@
   
   .option:hover {
     transform: scale(1.05);
-    background-color: #727dbd;
+    background-color: #31304D;
   }
   
   /* Responsive Design */
@@ -60,5 +60,34 @@
   .description
   {
     color: #161A30;
+    font-weight: bold;
+    font-size:17px;
+  }
+  
+  #maintxt
+  {
+    color:#161A30;
+    font-size: 30px;
+  }
+
+  body{
+    background-color:#F0ECE5;
+  }
+
+  .go-back-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color:#161A30;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-back-btn:hover {
+   background-color: #31304D;
   }
   
