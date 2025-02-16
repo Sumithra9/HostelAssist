@@ -1,13 +1,13 @@
-/* SProfile.css */
-
 /* Container for the entire profile */
 .profile-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     background-color: #f0ece5;
     min-height: 100vh;
+    position: relative;
   }
   
   /* Styling for the profile details section */
@@ -17,37 +17,6 @@
     border-radius: 10px;
     width: 100%;
     max-width: 600px;
-  }
-  
-  /* Container for each detail item */
-  .detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    color: #f0ece5;
-  }
-  
-  /* Styling for the labels */
-  .detail-label {
-    font-weight: bold;
-    margin-right: 10px;
-    flex: 1;
-  }
-  
-  /* Styling for the values */
-  .detail-value,
-  .detail-input {
-    flex: 2;
-  }
-  
-  /* Input fields for editing */
-  .detail-input {
-    background-color: #2c2f48;
-    border: 1px solid #44475a;
-    border-radius: 5px;
-    padding: 8px;
-    color: #f0ece5;
   }
   
   /* Container for the profile image */
@@ -72,8 +41,8 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: #4caf50;
-    color: white;
+    background-color: #f0ece5;
+    color: black;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
@@ -84,6 +53,41 @@
     display: none;
   }
   
+  .image-upload:hover {
+    background-color: #636d81;
+    color: white;
+  }
+  
+  /* Container for each detail item */
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #f0ece5;
+  }
+  
+  /* Styling for the labels */
+  .detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  /* Styling for the values and input fields */
+  .detail-value,
+  .detail-input {
+    flex: 2;
+  }
+  
+  .detail-input {
+    background-color: #2c2f48;
+    border: 1px solid #44475a;
+    border-radius: 5px;
+    padding: 8px;
+    color: #f0ece5;
+  }
+  
   /* Container for the action buttons */
   .button-group {
     display: flex;
@@ -92,12 +96,10 @@
   }
   
   /* Styling for the buttons */
-  .edit-button,
-  .save-button,
-  .cancel-button,
-  .back-button {
-    background-color: #4caf50;
-    color: white;
+  .button-group button,
+  .image-upload {
+    background-color: #f0ece5;
+    color: black;
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
@@ -107,10 +109,39 @@
     text-align: center;
   }
   
-  .edit-button:hover,
-  .save-button:hover,
-  .cancel-button:hover,
-  .back-button:hover {
-    background-color: #45a049;
+  .button-group button:hover,
+  .image-upload:hover {
+    background-color: #636d81;
+    color: white;
+  }
+  
+  /* Specific hover effect for the Save button */
+  .save-button:hover {
+    background-color: #f0ece5;
+    color: black;
+  }
+  
+  /* Styling for the Sign Out button */
+  .sign-out-button {
+    background-color: #161a30;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sign-out-button:hover {
+    background-color: rgb(220, 97, 97);
+    color: white;
+  }
+  
+  /* Styling for the Sign Out icon */
+  .sign-out-icon {
+    margin-right: 8px;
   }
   

@@ -1,3 +1,4 @@
+// SProfile.js
 import React, { useState } from 'react';
 import './SProfile.css';
 import { useNavigate } from 'react-router-dom';
@@ -15,11 +16,8 @@ const SProfile = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState(user.profileImage);
   const navigate = useNavigate();
 
-  // Handle input changes for text fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -28,34 +26,41 @@ const SProfile = () => {
     }));
   };
 
-  // Handle image selection
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedImage(file);
-      setPreviewImage(URL.createObjectURL(file));
+      const imageUrl = URL.createObjectURL(file);
+      setUser((prevUser) => ({
+        ...prevUser,
+        profileImage: imageUrl,
+      }));
     }
   };
 
-  // Handle form submission
   const handleSave = (e) => {
     e.preventDefault();
-    // Implement save functionality here (e.g., API call to upload image and update user data)
-    if (selectedImage) {
-      // Upload the selected image and update the user's profileImage
-      // Example: uploadImage(selectedImage).then((url) => setUser({ ...user, profileImage: url }));
-    }
+    // Implement save functionality here (e.g., API call)
     setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    // Reset user data or fetch the original data again
+    setIsEditing(false);
+  };
+
+  const handleSignOut = () => {
+    // Implement sign-out functionality here (e.g., clearing auth tokens)
+    navigate('/'); // Navigate to the home page
   };
 
   return (
     <div className="profile-container">
       <div className="profile-details">
         <div className="profile-image">
-          <img src={previewImage} alt="User Profile" />
+          <img src={user.profileImage} alt="User Profile" />
           {isEditing && (
             <label className="image-upload">
-              Change Image
+              <b>Change Image</b>
               <input type="file" accept="image/*" onChange={handleImageChange} />
             </label>
           )}
@@ -137,15 +142,11 @@ const SProfile = () => {
           </div>
           {isEditing && (
             <div className="button-group">
-              <button type="submit" className="save-button">
-                Save
+              <button type="submit" className="button save-button">
+                <b>Save</b>
               </button>
-              <button
-                type="button"
-                onClick={() => setIsEditing(false)}
-                className="cancel-button"
-              >
-                Cancel
+              <button type="button" onClick={handleCancel} className="button cancel-button">
+                <b>Cancel</b>
               </button>
             </div>
           )}
@@ -154,16 +155,19 @@ const SProfile = () => {
           <div className="button-group">
             <button
               onClick={() => setIsEditing(true)}
-              className="edit-button"
+              className="button edit-button"
             >
-              Edit
+              <b>Edit</b>
             </button>
-            <button onClick={() => navigate('/student')} className="back-button">
+            <button onClick={() => navigate('/student')} className="button back-button">
               Go Back
             </button>
           </div>
         )}
       </div>
+      <button onClick={handleSignOut} className="button sign-out-button">
+        Sign Out
+      </button>
     </div>
   );
 };
