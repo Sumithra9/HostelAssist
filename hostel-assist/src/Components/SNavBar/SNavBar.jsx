@@ -18,9 +18,10 @@ const SNavBar = ({ scrollToRef, refs }) => {
         <li><Link to="/complaints">Post Complaint</Link></li> {/* Link to Complaints page */}
         <li><Link to="/shistory">Complaint History</Link></li> {/* Link to Profile page */}
         <li onClick={() => scrollToRef(refs.faq)}>FAQs</li>
-        <li onClick={() => scrollToRef(refs.contact)}>Contact Us</li>
         <li onClick={() => scrollToRef(refs.about)}>About Us</li>
+        <li onClick={() => scrollToRef(refs.contact)}>Contact Us</li>
         <li><Link to="/profile">Profile</Link></li> {/* Link to Profile page */}
+        <li><Link to="/" >Sign Out</Link></li>
       </div>
     </div>
   );
