@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SHome from './Pages/SHome/SHome';
 import Login from "./Pages/Login/Login";
+import SComplaint from './Pages/SComplaint/SComplaint';
 
 
 
@@ -13,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} /> 
         <Route path="/student" element={<SHome />} />
-
+        <Route path="/complaints" element={<SComplaint />} />
 </Routes>
 
     </>
