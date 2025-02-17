@@ -18,6 +18,7 @@ const App = () => {
         <Route path="/complaints" element={<SComplaint />} />
         <Route path="/profile" element={<SProfile />} />
         <Route path="/shistory" element={<SHistory />} />
+        
 
 
 </Routes>
