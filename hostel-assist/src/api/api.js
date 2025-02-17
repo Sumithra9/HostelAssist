@@ -11,7 +11,8 @@ const SLoginPopup = ({ setShowLogin }) => {
         email: "",
         name: "",
         roomno: "",
-        block: ""
+        block: "",
+        phoneno:"",
     });
 
     const [error, setError] = useState(null);
@@ -76,6 +77,7 @@ const SLoginPopup = ({ setShowLogin }) => {
                         <input name="password" type="password" required placeholder="Create a Password" onChange={handleChange} />
                         <input name="roomno" type="text" required placeholder="Enter Room Number" onChange={handleChange} />
                         <input name="block" type="text" required placeholder="Enter Hostel Block" onChange={handleChange} />
+                        <input name="phoneno" type="text" required placeholder="Enter Phone Number" onChange={handleChange} />
                         <button type="submit" className="form-button">Create Account</button>
                         <p>
                             Already have an account?{' '}

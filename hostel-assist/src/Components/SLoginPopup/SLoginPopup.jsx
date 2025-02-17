@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser, loginUser } from "../../api/auth"; // Import API functions
@@ -22,17 +23,32 @@ const SLoginPopup = ({ setShowLogin }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Validate Form Inputs
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email.");
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return false;
+    }
+    return true;
+  };
+
   // Handle Student Login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser({ 
-        email: formData.email, 
-        password: formData.password 
+      const response = await loginUser({
+        email: formData.email,
+        password: formData.password,
       });
-      
+
       console.log("Login Successful:", response);
       localStorage.setItem("token", response.token); // Store token
+      localStorage.setItem("user", JSON.stringify(response.user)); // Store user details
 
       navigate("/student"); // Redirect to student page
     } catch (error) {
@@ -43,12 +59,18 @@ const SLoginPopup = ({ setShowLogin }) => {
   // Handle Student Signup
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    // Validate form inputs
+    if (!validateForm()) return;
+
+    console.log(formData);  // Log form data
     try {
       await registerUser(formData);
       alert("Signup Successful! Please log in.");
       setIsLogin(true); // Switch to login form
     } catch (error) {
-      setError("Signup failed. Try again.");
+      console.error(error);
+      setError(error.response?.data?.message || "Signup failed. Please try again.");
     }
   };
 

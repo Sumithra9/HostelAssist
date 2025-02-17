@@ -1,23 +1,63 @@
-// SProfile.js
-import React, { useState } from 'react';
-import './SProfile.css';
-import { useNavigate } from 'react-router-dom';
-import { assets } from '../../assets/assets';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./SProfile.css";
+import { assets } from "../../assets/assets";
 
 const SProfile = () => {
+  const navigate = useNavigate();
+
+  // ✅ Fetch user details from localStorage (stored after login)
+  const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+
   const [user, setUser] = useState({
-    profileImage: assets.image,
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    hostelBlock: 'A',
-    roomNumber: '101',
-    phoneNumber: '123-456-7890',
-    username: 'johndoe',
+    profileImage: assets.image, // Default image
+    name: storedUser.name || "",
+    email: storedUser.email || "",
+    hostelBlock: storedUser.block || "",
+    roomNumber: storedUser.roomno || "",
+    username: storedUser.username || "",
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
+  const [error, setError] = useState(null); // For error handling
 
+  // ✅ Fetch user data from backend (optional, if needed)
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const response = await fetch("http://localhost:5000/api/user/profile", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          setUser({
+            profileImage: assets.image, // Default image or user-specific image
+            name: data.name || storedUser.name,
+            email: data.email || storedUser.email,
+            hostelBlock: data.block || storedUser.hostelBlock,
+            roomNumber: data.roomno || storedUser.roomNumber,
+            username: data.username || storedUser.username,
+          });
+        } else {
+          setError(data.message || "Failed to load profile.");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        // setError("Something went wrong while fetching your data.");
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  // ✅ Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -26,6 +66,7 @@ const SProfile = () => {
     }));
   };
 
+  // ✅ Handle image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -37,20 +78,57 @@ const SProfile = () => {
     }
   };
 
-  const handleSave = (e) => {
+  // ✅ Save updated profile data
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Implement save functionality here (e.g., API call)
-    setIsEditing(false);
+
+    // Basic validation
+    if (!user.name || !user.hostelBlock || !user.roomNumber || !user.username) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch("http://localhost:5000/api/user/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: user.name,
+          hostelBlock: user.hostelBlock,
+          roomNumber: user.roomNumber,
+          username: user.username,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("user", JSON.stringify(user)); // Update local storage
+        alert("Profile updated successfully!");
+        setIsEditing(false);
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
+  // ✅ Cancel editing
   const handleCancel = () => {
-    // Reset user data or fetch the original data again
     setIsEditing(false);
   };
 
+  // ✅ Handle sign out
   const handleSignOut = () => {
-    // Implement sign-out functionality here (e.g., clearing auth tokens)
-    navigate('/'); // Navigate to the home page
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/"); // Redirect to home/login
   };
 
   return (
@@ -65,6 +143,10 @@ const SProfile = () => {
             </label>
           )}
         </div>
+
+        {/* Show error message if fetch fails */}
+        {error && <p className="error-message">{error}</p>}
+
         <form onSubmit={handleSave}>
           <div className="detail-item">
             <label className="detail-label">Name:</label>
@@ -80,10 +162,12 @@ const SProfile = () => {
               <span className="detail-value">{user.name}</span>
             )}
           </div>
+
           <div className="detail-item">
             <label className="detail-label">Email:</label>
             <span className="detail-value">{user.email}</span>
           </div>
+
           <div className="detail-item">
             <label className="detail-label">Hostel Block:</label>
             {isEditing ? (
@@ -98,6 +182,7 @@ const SProfile = () => {
               <span className="detail-value">{user.hostelBlock}</span>
             )}
           </div>
+
           <div className="detail-item">
             <label className="detail-label">Room Number:</label>
             {isEditing ? (
@@ -112,7 +197,8 @@ const SProfile = () => {
               <span className="detail-value">{user.roomNumber}</span>
             )}
           </div>
-          <div className="detail-item">
+
+          {/* <div className="detail-item">
             <label className="detail-label">Phone Number:</label>
             {isEditing ? (
               <input
@@ -125,7 +211,8 @@ const SProfile = () => {
             ) : (
               <span className="detail-value">{user.phoneNumber}</span>
             )}
-          </div>
+          </div> */}
+
           <div className="detail-item">
             <label className="detail-label">Username:</label>
             {isEditing ? (
@@ -140,6 +227,7 @@ const SProfile = () => {
               <span className="detail-value">{user.username}</span>
             )}
           </div>
+
           {isEditing && (
             <div className="button-group">
               <button type="submit" className="button save-button">
@@ -151,20 +239,19 @@ const SProfile = () => {
             </div>
           )}
         </form>
+
         {!isEditing && (
           <div className="button-group">
-            <button
-              onClick={() => setIsEditing(true)}
-              className="button edit-button"
-            >
+            <button onClick={() => setIsEditing(true)} className="button edit-button">
               <b>Edit</b>
             </button>
-            <button onClick={() => navigate('/student')} className="button back-button">
+            <button onClick={() => navigate("/student")} className="button back-button">
               Go Back
             </button>
           </div>
         )}
       </div>
+
       <button onClick={handleSignOut} className="button sign-out-button">
         Sign Out
       </button>
