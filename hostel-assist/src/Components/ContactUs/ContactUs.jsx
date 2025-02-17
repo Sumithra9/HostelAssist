@@ -5,15 +5,17 @@ import "./ContactUs.css";
 const ContactUs = forwardRef((props, ref) => {
   const form = useRef();
 
+  // Function to send email through EmailJS
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // Sending form data to EmailJS
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS Service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS Template ID
+        process.env.REACT_APP_EMAILJS_SERVICE_ID, // Replace with your EmailJS service ID
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // Replace with your EmailJS template ID
         form.current,
-        "YOUR_USER_ID" // Replace with your EmailJS User ID
+        process.env.REACT_APP_EMAILJS_USER_ID // Replace with your EmailJS user ID
       )
       .then(
         (result) => {
@@ -26,7 +28,7 @@ const ContactUs = forwardRef((props, ref) => {
         }
       );
 
-    e.target.reset();
+    e.target.reset(); // Reset the form fields after submission
   };
 
   return (
@@ -37,13 +39,24 @@ const ContactUs = forwardRef((props, ref) => {
           <input type="text" name="user_name" placeholder="Name" required />
         </div>
         <div className="form-group">
-          <input type="email" name="user_email" required placeholder="Email ID" />
+          <input
+            type="email"
+            name="user_email"
+            placeholder="Email ID"
+            required
+          />
         </div>
         <div className="form-group">
-          <input type="text" name="subject" required placeholder="Subject" />
+          <input type="text" name="subject" placeholder="Subject" required />
         </div>
         <div className="form-group">
-          <textarea name="message" cols="40" rows="4" required placeholder="Enter your message"></textarea>
+          <textarea
+            name="message"
+            cols="40"
+            rows="4"
+            placeholder="Enter your message"
+            required
+          ></textarea>
         </div>
         <button type="submit">Send Message</button>
       </form>
