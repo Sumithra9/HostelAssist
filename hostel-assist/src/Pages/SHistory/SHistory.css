@@ -1,116 +1,142 @@
 .shistory-container {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .tab-buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .tab-buttons button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    background-color: #ddd;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  .tab-buttons .active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .complaint-table {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  .delete-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  
-  .delete-btn:hover {
-    background-color: darkred;
-  }
-  
-  /* Back Button BELOW the table */
-  .back-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    margin: 20px auto 0;
-    width: fit-content;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Star Rating Styles */
-  .star-rating {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .star-rating span {
-    font-size: 24px;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .filled-star {
-    color: gold;
-  }
-  
-  .empty-star {
-    color: gray;
-  }
-  
-  .submit-feedback {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 10px;
-    border-radius: 3px;
-  }
-  
-  .submit-feedback:disabled {
-    background-color: gray;
-    cursor: default;
-  }
-  
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  margin-top: 100px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Toggle Buttons */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab-buttons button {
+  padding: 12px 24px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #ddd;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab-buttons .active {
+  background-color:#2d3355 ;
+  color: white;
+}
+
+.tab-buttons button:hover {
+  background-color:  #161A30;
+  color: white;
+}
+
+/* Complaint Table */
+.complaint-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #e4e4e4;
+  font-size: 16px;
+}
+
+/* Delete Icon */
+.delete-icon {
+  color: red;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete-icon:hover {
+  color: darkred;
+}
+
+/* Back Button */
+.back-button {
+  background-color: #161A30;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin: 20px auto 0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #636d81;
+}
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.star-rating span {
+  font-size: 24px;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.filled-star {
+  color: gold;
+}
+
+.empty-star {
+  color: lightgray;
+}
+
+.star-rating span:hover {
+  color: orange;
+}
+
+/* Submit Feedback Button */
+.submit-feedback {
+  background-color: #31304D;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.submit-feedback:hover {
+  background-color: #636d81;
+}
+
+.submit-feedback:disabled {
+  background-color: gray;
+  cursor: default;
+}
