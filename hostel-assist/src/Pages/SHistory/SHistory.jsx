@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa"; // Import delete icon
 import "./SHistory.css";
@@ -15,6 +15,15 @@ const SHistory = () => {
     { id: 3, type: "Carpentry", registeredDate: "2024-02-10", resolvedDate: "2024-02-12" },
     { id: 4, type: "Mess", registeredDate: "2024-02-08", resolvedDate: "2024-02-11" },
   ]);
+
+  // Fetch newly submitted complaints from localStorage
+  useEffect(() => {
+    const storedComplaints = JSON.parse(localStorage.getItem("pendingComplaints")) || [];
+    if (storedComplaints.length > 0) {
+      setPendingComplaints((prevComplaints) => [...prevComplaints, ...storedComplaints]);
+      localStorage.removeItem("pendingComplaints"); // Clear stored complaints after adding
+    }
+  }, []);
 
   const deleteComplaint = (id) => {
     setPendingComplaints(pendingComplaints.filter((complaint) => complaint.id !== id));
