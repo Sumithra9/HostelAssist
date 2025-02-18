@@ -8,7 +8,7 @@ import SComplaint from './Pages/SComplaint/SComplaint';
 import SProfile from './Pages/SProfile/SProfile';
 import SHistory from './Pages/SHistory/SHistory';
 import ComplaintForm from './Pages/ComplaintForm/ComplaintForm';
-
+import Chatbot from './Components/Chatbot';
 const App = () => {
   return (
     <>
@@ -19,10 +19,10 @@ const App = () => {
         <Route path="/profile" element={<SProfile />} />
         <Route path="/shistory" element={<SHistory />} />
         <Route path="/complaint-form" element ={<ComplaintForm/>}/>
-        
-
+      
 
 </Routes>
+<Chatbot />
 
     </>
   );
