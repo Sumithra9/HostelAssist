@@ -1,217 +1,148 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './ComplaintForm.css';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "./ComplaintForm.css"; // Keep the original CSS
 
 const ComplaintForm = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategory = queryParams.get("category") || ""; // Get category from URL
 
-  // State to manage user data
-  const [userData, setUserData] = useState({
-    name: '',
-    hostelBlock: '',
-    roomNo: '',
-    email: '',
-  });
+  // ✅ Get user data from localStorage
+  const storedUser = JSON.parse(localStorage.getItem("user")) || {};
 
-  // State to manage form data
+  // ✅ Initialize form with user data + selected category
   const [formData, setFormData] = useState({
-    complaintCategory: '',
-    postedDate: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
-    complaintDescription: '',
-    availableDate: '',
-    availableTime: '',
+    name: storedUser.name || "",
+    email: storedUser.email || "",
+    roomNo: storedUser.roomno || "",
+    hostelBlock: storedUser.block || "",
+    complaintCategory: selectedCategory,
+    complaintDescription: "",
+    availableDate: "",
+    availableTime: "",
     file: null,
   });
 
-  // Fetch user data from backend
+  // ✅ Fetch latest user data from backend on mount (optional)
   useEffect(() => {
     const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
       try {
-        const response = await fetch('http://localhost:5000/api/auth/profile', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
+        const response = await fetch("http://localhost:5000/api/auth/profile", {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
         });
 
+        const data = await response.json();
         if (response.ok) {
-          const data = await response.json();
-          setUserData({
-            name: data.user.name,
-            hostelBlock: data.user.block,
-            roomNo: data.user.roomno,
-            email: data.user.email,
-          });
-        } else {
-          console.error('Failed to fetch user data');
+          setFormData((prevData) => ({
+            ...prevData,
+            name: data.name || storedUser.name,
+            email: data.email || storedUser.email,
+            roomNo: data.roomno || storedUser.roomNo,
+            hostelBlock: data.block || storedUser.hostelBlock,
+            complaintCategory: selectedCategory, // Keep category selected
+          }));
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Failed to fetch user data:", error);
       }
     };
 
     fetchUserData();
-  }, []);
+  }, [selectedCategory]); // Re-run if category changes
 
-  // Extract 'category' from query parameters
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const category = params.get('category');
-    if (category) {
-      setFormData((prevData) => ({
-        ...prevData,
-        complaintCategory: category,
-      }));
-    }
-  }, [location.search]);
-
-  // Handle form field changes
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'file') {
-      setFormData((prevData) => ({
-        ...prevData,
-        file: files[0],
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+  // ✅ Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  // Handle form submission
+  // ✅ Handle file upload
+  const handleFileChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      file: e.target.files[0],
+    }));
+  };
+
+  // ✅ Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate form data
-    if (
-      !formData.complaintDescription ||
-      !formData.availableDate ||
-      !formData.availableTime
-    ) {
-      alert('Please fill in all required fields.');
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please log in to submit a complaint.");
       return;
     }
 
-    // Create a new complaint object
-    const newComplaint = {
-      id: Date.now(), // Unique identifier
-      name: userData.name,
-      hostelBlock: userData.hostelBlock,
-      roomNo: userData.roomNo,
-      email: userData.email,
-      complaintCategory: formData.complaintCategory,
-      postedDate: formData.postedDate,
-      complaintDescription: formData.complaintDescription,
-      availableDate: formData.availableDate,
-      availableTime: formData.availableTime,
-    };
-
-    // Retrieve existing complaints from localStorage
-    const storedComplaints = JSON.parse(localStorage.getItem("pendingComplaints")) || [];
-    
-    // Add the new complaint to the list
-    storedComplaints.push(newComplaint);
-
-    // Save the updated complaints list in localStorage
-    localStorage.setItem("pendingComplaints", JSON.stringify(storedComplaints));
+    const formDataToSend = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
 
     try {
-      // Replace with your API call if needed
-      alert('Complaint registered successfully!');
-      navigate('/student'); // Redirect to student dashboard or desired page
+      const response = await fetch("http://localhost:5000/api/complaints", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Complaint submitted successfully!");
+      } else {
+        alert(data.message || "Failed to submit complaint.");
+      }
     } catch (error) {
-      console.error('Error submitting complaint:', error);
-      alert('Failed to register complaint. Please try again.');
+      console.error("Error submitting complaint:", error);
     }
   };
 
   return (
-    <div className="complaint-form-container">
-      <h1>Complaint Form</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={userData.name} disabled />
-        </label>
-        <label>
-          Hostel Block:
-          <input type="text" value={userData.hostelBlock} disabled />
-        </label>
-        <label>
-          Room No:
-          <input type="text" value={userData.roomNo} disabled />
-        </label>
-        <label>
-          Complaint Category:
-          <input
-            type="text"
-            name="complaintCategory"
-            value={formData.complaintCategory}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Email:
-          <input type="email" value={userData.email} disabled />
-        </label>
-        <label>
-          Posted Date:
-          <input type="date" value={formData.postedDate} disabled />
-        </label>
-        <label>
-          Complaint Description:
-          <textarea
-            name="complaintDescription"
-            value={formData.complaintDescription}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Available Date:
-          <input
-            type="date"
-            name="availableDate"
-            value={formData.availableDate}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Available Time:
-          <input
-            type="time"
-            name="availableTime"
-            value={formData.availableTime}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Add File (max 1MB):
-          <input
-            type="file"
-            name="file"
-            accept="image/*"
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-      <button className="go-back-btn" onClick={() => navigate('/student')}>
-        Go Back
-      </button>
-    </div>
+    <form onSubmit={handleSubmit} className="complaint-form">
+      <label>Name:</label>
+      <input type="text" name="name" value={formData.name} readOnly />
+
+      <label>Email:</label>
+      <input type="text" name="email" value={formData.email} readOnly />
+
+      <label>Room Number:</label>
+      <input type="text" name="roomNo" value={formData.roomNo} readOnly />
+
+      <label>Hostel Block:</label>
+      <input type="text" name="hostelBlock" value={formData.hostelBlock} readOnly />
+
+      <label>Complaint Category:</label>
+      <select name="complaintCategory" value={formData.complaintCategory} onChange={handleInputChange}>
+        <option value="">Select Category</option>
+        <option value="AC">AC</option>
+        <option value="Plumber">Plumber</option>
+        <option value="Carpenter">Carpenter</option>
+        <option value="Water Cooler">Water Cooler</option>
+        <option value="Housekeeping">Housekeeping</option>
+        <option value="Electrician">Electrician</option>
+      </select>
+
+      <label>Description:</label>
+      <textarea name="complaintDescription" value={formData.complaintDescription} onChange={handleInputChange} />
+
+      <label>Available Date:</label>
+      <input type="date" name="availableDate" value={formData.availableDate} onChange={handleInputChange} />
+
+      <label>Available Time:</label>
+      <input type="time" name="availableTime" value={formData.availableTime} onChange={handleInputChange} />
+
+      <label>Upload File (Optional):</label>
+      <input type="file" onChange={handleFileChange} />
+
+      <button type="submit">Submit Complaint</button>
+    </form>
   );
 };
 
 export default ComplaintForm;
-
-
-
-

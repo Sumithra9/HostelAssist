@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+
 import User from "../models/User.js"; // Import User model
 
 const router = express.Router();
@@ -60,11 +60,11 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials!" });
 
-    const token = jwt.sign({ id: user._id }, "your_secret_key", { expiresIn: "1h" });
+
 
     // ✅ Only send necessary user details
     res.json({
-      token,
+      
       user: {
         id: user._id,
         name: user.name,
@@ -72,7 +72,6 @@ router.post("/login", async (req, res) => {
         email: user.email,
         roomno: user.roomno,
         block: user.block,
-        
       },
     });
 
@@ -81,7 +80,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Server error!" });
   }
 });
-
 
 // ✅ Get User Profile
 router.get("/profile", async (req, res) => {
@@ -93,7 +91,7 @@ router.get("/profile", async (req, res) => {
       }
   
       // Verify the token
-      const decoded = jwt.verify(token, "your_secret_key");
+      const decoded = jwt.verify(token, process.env.JWT_SECRET); // ✅ Use the secret from .env
       
       // Fetch the user from the database using the decoded user ID
       const user = await User.findById(decoded.id);
@@ -110,13 +108,12 @@ router.get("/profile", async (req, res) => {
           email: user.email,
           roomno: user.roomno,
           block: user.block,
-       
         },
       });
     } catch (error) {
       console.error("Profile Error:", error);
       res.status(500).json({ message: "Internal Server Error" });
     }
-  });
-  
+});
+
 export default router;

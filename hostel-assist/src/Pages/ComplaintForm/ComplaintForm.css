@@ -1,120 +1,75 @@
-/* Set a good font for the page */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0ece5; /* Set light background color */
-    margin: 0;
-    padding: 0;
+/* Complaint Form Container */
+.complaint-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+/* Form Labels */
+.complaint-form label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input Fields */
+.complaint-form input,
+.complaint-form select,
+.complaint-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Readonly Inputs */
+.complaint-form input[readonly] {
+  background-color: #f9f9f9;
+  cursor: not-allowed;
+}
+
+/* Textarea */
+.complaint-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* File Input */
+.complaint-form input[type="file"] {
+  border: none;
+  padding: 0;
+}
+
+/* Submit Button */
+.complaint-form button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.complaint-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .complaint-form {
+    width: 90%;
+    padding: 15px;
   }
-  
-  /* Container for the complaint form */
-  .complaint-form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #161a30;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Form title */
-  .complaint-form-container h1 {
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: 600;
-  }
-  
-  /* Form labels */
-  .complaint-form-container label {
-    display: block;
-    margin-bottom: 10px;
-    color: #f0ece5;
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  /* Form inputs and text area */
-  .complaint-form-container input[type="text"],
-  .complaint-form-container input[type="email"],
-  .complaint-form-container input[type="date"],
-  .complaint-form-container input[type="time"],
-  .complaint-form-container textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f4f4f4; /* Slight grey shade for the input fields */
-    color: #333;
-    font-size: 16px;
-    font-weight: 400;
-    box-sizing: border-box;
-  }
-  
-  /* Textarea for complaint description */
-  .complaint-form-container textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-  
-  /* File input */
-  .complaint-form-container input[type="file"] {
-    margin-bottom: 20px;
-  }
-  
-  /* Submit button */
-  .complaint-form-container .submit-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: white; /* White background */
-    color: #161a30; /* Dark text color for contrast */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  /* Hover effect for submit button */
-  .complaint-form-container .submit-btn:hover {
-    background-color: #d7c1a1; /* Slight darker shade */
-    transform: scale(1.05);
-  }
-  
-  /* Go Back button */
-  .complaint-form-container .go-back-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  /* Hover effect for go back button */
-  .complaint-form-container .go-back-btn:hover {
-    background-color: #5a6268;
-    transform: scale(1.05);
-  }
-  
-  /* Additional hover effects for other inputs */
-  .complaint-form-container input[type="text"]:hover,
-  .complaint-form-container input[type="email"]:hover,
-  .complaint-form-container input[type="date"]:hover,
-  .complaint-form-container input[type="time"]:hover,
-  .complaint-form-container textarea:hover {
-    border-color: #f0ece5; /* Subtle effect when hovering */
-  }
-  
-  /* Add some padding and margin for the go back button to prevent overlap */
-  .complaint-form-container .go-back-btn {
-    margin-top: 15px;
-  }
-  
+}
