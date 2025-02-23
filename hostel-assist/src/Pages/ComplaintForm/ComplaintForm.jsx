@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "./ComplaintForm.css"; // Keep the original CSS
 
 const ComplaintForm = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // ✅ Hook for navigation
   const queryParams = new URLSearchParams(location.search);
-  const selectedCategory = queryParams.get("category") || ""; // Get category from URL
+  const selectedCategory = queryParams.get("category") || "";
 
   // ✅ Get user data from localStorage
   const storedUser = JSON.parse(localStorage.getItem("user")) || {};
 
-  // ✅ Initialize form with user data + selected category
   const [formData, setFormData] = useState({
     name: storedUser.name || "",
     email: storedUser.email || "",
@@ -23,7 +23,6 @@ const ComplaintForm = () => {
     file: null,
   });
 
-  // ✅ Fetch latest user data from backend on mount (optional)
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
@@ -43,7 +42,7 @@ const ComplaintForm = () => {
             email: data.email || storedUser.email,
             roomNo: data.roomno || storedUser.roomNo,
             hostelBlock: data.block || storedUser.hostelBlock,
-            complaintCategory: selectedCategory, // Keep category selected
+            complaintCategory: selectedCategory,
           }));
         }
       } catch (error) {
@@ -52,9 +51,8 @@ const ComplaintForm = () => {
     };
 
     fetchUserData();
-  }, [selectedCategory]); // Re-run if category changes
+  }, [selectedCategory]);
 
-  // ✅ Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -63,7 +61,6 @@ const ComplaintForm = () => {
     }));
   };
 
-  // ✅ Handle file upload
   const handleFileChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -71,7 +68,6 @@ const ComplaintForm = () => {
     }));
   };
 
-  // ✅ Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -141,6 +137,11 @@ const ComplaintForm = () => {
       <input type="file" onChange={handleFileChange} />
 
       <button type="submit">Submit Complaint</button>
+
+      {/* ✅ Go Back Button */}
+      <button type="button" onClick={() => navigate("/student")} className="go-back-button">
+        Go Back
+      </button>
     </form>
   );
 };

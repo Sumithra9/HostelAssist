@@ -5,6 +5,8 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import Complaint from "../models/Complaint.js";
 
+
+
 const router = express.Router();
 
 // Get __dirname in ES Modules
@@ -86,5 +88,18 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+
+
+// ✅ Delete a complaint
+router.delete("/:id", async (req, res) => {
+    try {
+      await Complaint.findByIdAndDelete(req.params.id);
+      res.json({ message: "Complaint deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Error deleting complaint" });
+    }
+  });
+
+
 
 export default router; // ✅ Use 'export default' instead of 'module.exports'
