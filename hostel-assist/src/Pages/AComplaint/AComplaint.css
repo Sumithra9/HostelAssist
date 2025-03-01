@@ -1,5 +1,17 @@
 .acomplaint-container
 {
    
-    padding-top: 30px;
+    padding-top: 20px;
+    
+    
+}
+#maintxt
+{
+    color:#161A30;
+    
+}
+#sub
+{
+    color:#161A30;
+    font-size: 18px;
 }

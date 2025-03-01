@@ -11,8 +11,8 @@ const AComplaint = () => {
     <div className="acomplaint-container">
         
       <h1 id="maintxt">Manage Complaints - Block {block}</h1>
-      <br />
-      <p className="description">Select a category to view complaints</p>
+   
+      <p className="description" id="sub">Select a category to view complaints</p>
       <br />
       <div className="complaint-options">
         <Link to={`/admin-complaints/${block}/AC`} className="option">
@@ -48,7 +48,7 @@ const AComplaint = () => {
       </div>
 
       {/* Go Back Button */}
-      <button className="go-back-btn" onClick={() => navigate("/admin")}>
+      <button className="go-back-btn" id="goback" onClick={() => navigate("/admin")}>
         Go Back
       </button>
     </div>
