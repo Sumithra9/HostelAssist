@@ -1,51 +1,24 @@
-import React, { useEffect, useState } from "react";
-import "./AHome.css"; // CSS for styling
-
+import React from "react";
+import AHeader from "../../Components/AHeader/AHeader"; // Importing AHeader component
+import AFooter from "../../Components/AFooter/AFooter";
 const AHome = () => {
-  const [complaints, setComplaints] = useState([]);
-
-  // ✅ Fetch complaints from backend
-  useEffect(() => {
-    const fetchComplaints = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/complaints");
-        const data = await response.json();
-        setComplaints(data);
-      } catch (error) {
-        console.error("Error fetching complaints:", error);
-      }
-    };
-
-    fetchComplaints();
-  }, []);
+  // Function to handle sign out
+  const handleSignOut = () => {
+    alert("Signing out...");
+    // Add your sign-out logic here (e.g., clear session, redirect, etc.)
+  };
 
   return (
-    <div className="admin-container">
-      <h2>Admin Complaint Dashboard</h2>
-      {complaints.length === 0 ? (
-        <p>No complaints found.</p>
-      ) : (
-        <table className="complaints-table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Available Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {complaints.map((complaint) => (
-              <tr key={complaint._id}>
-                <td>{complaint.complaintCategory}</td>
-                <td>{complaint.complaintDescription}</td>
-                <td>{complaint.availableDate || "N/A"}</td>
-                <td>{complaint.status || "Pending"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div>
+      {/* Calling AHeader and passing the sign-out function */}
+      <AHeader onSignOut={handleSignOut} />
+
+      <main style={{ padding: "20px" }}>
+        <h2>Welcome to HostelAssist</h2>
+        <p>This is the home page content.</p>
+      </main>
+
+      <AFooter/>
     </div>
   );
 };
