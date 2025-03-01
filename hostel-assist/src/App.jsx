@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/profile" element={<SProfile />} />
         <Route path="/shistory" element={<SHistory />} />
         <Route path="/complaint-form" element ={<ComplaintForm/>}/>
-        <Route path="/admin" elemnt={<AHome/>}/>
+        <Route path="/admin" element={<AHome/>}/>
 
 </Routes>
 <Chatbot />
