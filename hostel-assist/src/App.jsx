@@ -9,6 +9,7 @@ import SProfile from './Pages/SProfile/SProfile';
 import SHistory from './Pages/SHistory/SHistory';
 import ComplaintForm from './Pages/ComplaintForm/ComplaintForm';
 import Chatbot from './Components/Chatbot';
+import AHome from './Pages/AHome/AHome';
 const App = () => {
   return (
     <>
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/profile" element={<SProfile />} />
         <Route path="/shistory" element={<SHistory />} />
         <Route path="/complaint-form" element ={<ComplaintForm/>}/>
-      
+        <Route path="/admin" elemnt={<AHome/>}/>
 
 </Routes>
 <Chatbot />
