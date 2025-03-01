@@ -28,25 +28,27 @@ const AComplaintDetails = () => {
 
       <table className="complaint-table">
         <thead>
-          <tr>
-            <th>Complaint ID</th>
-            <th>Student Name</th>
+          <tr><th>Student Name</th>
             <th>Room No</th>
             <th>Description</th>
             <th>Status</th>
-            <th>Date</th>
+            <th>Posted Date</th>
+            <th>Available Date</th>
+            <th>Available Time</th>
           </tr>
         </thead>
         <tbody>
           {complaints.length > 0 ? (
             complaints.map((complaint) => (
               <tr key={complaint._id}>
-                <td>{complaint._id}</td>
+                {/* <td>{complaint.email}</td> */}
                 <td>{complaint.name}</td>
                 <td>{complaint.roomNo}</td>
                 <td>{complaint.complaintDescription}</td>
                 <td>Pending</td> {/* You might want to add status logic later */}
                 <td>{new Date(complaint.postedDate).toLocaleDateString()}</td>
+                <td>{complaint.availableDate}</td>
+                <td>{complaint.availableTime}</td>
               </tr>
             ))
           ) : (

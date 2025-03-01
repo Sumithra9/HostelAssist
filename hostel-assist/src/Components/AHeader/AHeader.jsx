@@ -7,7 +7,7 @@ import "./AHeader.css";
 const AHeader = ({ onSignOut }) => {
   return (
     <header className="aheader">
-      <h1>HostelAssist</h1>
+      <h1 id="logo">HostelAssist</h1>
 
       <div className="aheader-right">
        

@@ -23,7 +23,7 @@
   }
   
   .complaint-table th {
-    background-color: #007bff;
+    background-color: #161A30;
     color: white;
   }
   
@@ -38,4 +38,11 @@
   .complaint-table td {
     font-size: 16px;
   }
+  /* #nocomplaints
+  {
+    text-align: center;
+    justify-content: center;
+   
+   
+  } */
   
