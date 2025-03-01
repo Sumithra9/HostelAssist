@@ -1,0 +1,17 @@
+/* AFooter.css */
+.afooter {
+ 
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: bolder;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 25px;
+    padding-top: 20px;;
+    background-color: #161A30; 
+  }
+  
