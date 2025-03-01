@@ -1,6 +1,4 @@
-
 // /src/SHome.jsx
-
 import React, { useRef } from 'react';
 import './SHome.css';
 import SFaq from '../../Components/SFaq/SFaq';
@@ -14,30 +12,32 @@ const SHome = () => {
   const aboutRef = useRef(null);
   const contactusRef = useRef(null);
   const faqRef = useRef(null);
-   const headerRef = useRef(null);
-  
+  const headerRef = useRef(null);
 
   const scrollToRef = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className='home-page'>
-      <SNavBar scrollToRef={scrollToRef} refs={{
-         about: aboutRef,
-        contact: contactusRef,
-        faq: faqRef,
-         header: headerRef,
-        
-      }} />
+      <SNavBar 
+        scrollToRef={scrollToRef} 
+        refs={{ about: aboutRef, contact: contactusRef, faq: faqRef, header: headerRef }}
+      />
       <SHeader ref={headerRef} /> 
       <div ref={faqRef}><SFaq /></div>
       <div ref={aboutRef}><About /></div>
       <div ref={contactusRef}><ContactUs /></div>
-      <SFooter/> 
+
+      {/* ✅ Pass scrollToRef and refs to SFooter */}
+      <SFooter 
+        scrollToRef={scrollToRef} 
+        refs={{ about: aboutRef, contact: contactusRef, faq: faqRef, header: headerRef }}
+      />
     </div>
   );
 };
 
 export default SHome;
-

@@ -30,6 +30,10 @@
     padding-top: 20px;
 }
 
+.footer-content-center li{
+    cursor: pointer;
+}
+
 /* Align footer sections */
 .links {
     display: flex;
