@@ -1,0 +1,61 @@
+/* AHeader.css */
+.aheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #2563eb; /* Blue color */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aheader h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .aheader-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .aheader-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .aheader-right a:hover {
+    opacity: 0.8;
+  }
+  
+  .aheader-right .profile-icon {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .aheader-right button {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  
+  .aheader-right button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
