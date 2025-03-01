@@ -10,6 +10,8 @@ import SHistory from './Pages/SHistory/SHistory';
 import ComplaintForm from './Pages/ComplaintForm/ComplaintForm';
 import Chatbot from './Components/Chatbot';
 import AHome from './Pages/AHome/AHome';
+import AComplaint from './Pages/AComplaint/AComplaint';
+import AComplaintDetails from './Pages/AComplaintDetails/AComplaintDetails';
 const App = () => {
   return (
     <>
@@ -21,6 +23,8 @@ const App = () => {
         <Route path="/shistory" element={<SHistory />} />
         <Route path="/complaint-form" element ={<ComplaintForm/>}/>
         <Route path="/admin" element={<AHome/>}/>
+        <Route path="/admin-complaints/:block" element={<AComplaint />} />
+        <Route path="/admin-complaints/:block/:category" element={<AComplaintDetails />} />
 
 </Routes>
 <Chatbot />
