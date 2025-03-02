@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const ComplaintSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    hostelBlock: { type: String, required: true },
-    roomNo: { type: String, required: true },
+    block: { type: String, required: true },
+    roomno: { type: String, required: true },
     email: { type: String, required: true },
     complaintCategory: { type: String, required: true },
     postedDate: { type: Date, default: Date.now },

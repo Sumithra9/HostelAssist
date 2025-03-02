@@ -56,8 +56,8 @@ router.post("/", upload.single("file"), async (req, res) => {
         // Create complaint document
         const newComplaint = new Complaint({
             name: req.body.name,
-            hostelBlock: req.body.hostelBlock,
-            roomNo: req.body.roomNo,
+            block: req.body.block,
+            roomno: req.body.roomno,
             email: req.body.email,
             complaintCategory: req.body.complaintCategory,
             postedDate: new Date(),
@@ -116,7 +116,7 @@ router.delete("/:id", async (req, res) => {
   
       // Use a case-insensitive exact match
       const complaints = await Complaint.find({
-        hostelBlock: { $regex: `^${block}$`, $options: "i" },
+        block: { $regex: `^${block}$`, $options: "i" },
         complaintCategory: { $regex: `^${category}$`, $options: "i" },
       });
   
