@@ -13,8 +13,8 @@ const SProfile = () => {
     profileImage: assets.image, // Default image
     name: storedUser.name || "",
     email: storedUser.email || "",
-    hostelBlock: storedUser.block || "",
-    roomNumber: storedUser.roomno || "",
+    block: storedUser.block || "",
+    roomno: storedUser.roomno || "",
     username: storedUser.username || "",
   });
 
@@ -41,8 +41,8 @@ const SProfile = () => {
             profileImage: assets.image, // Default image or user-specific image
             name: data.name || storedUser.name,
             email: data.email || storedUser.email,
-            hostelBlock: data.block || storedUser.hostelBlock,
-            roomNumber: data.roomno || storedUser.roomNumber,
+            block: data.block || storedUser.block,
+            roomno: data.roomno || storedUser.roomno,
             username: data.username || storedUser.username,
           });
         } else {
@@ -83,7 +83,7 @@ const SProfile = () => {
     e.preventDefault();
 
     // Basic validation
-    if (!user.name || !user.hostelBlock || !user.roomNumber || !user.username) {
+    if (!user.name || !user.block || !user.roomno || !user.username) {
       alert("Please fill all required fields.");
       return;
     }
@@ -92,7 +92,7 @@ const SProfile = () => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const response = await fetch("http://localhost:5000/api/user/update", {
+      const response = await fetch("http://localhost:5000/api/auth/update", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -100,15 +100,17 @@ const SProfile = () => {
         },
         body: JSON.stringify({
           name: user.name,
-          hostelBlock: user.hostelBlock,
-          roomNumber: user.roomNumber,
           username: user.username,
+          roomno: user.roomno,
+          block: user.block,
+          
+          
         }),
       });
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(user)); // Update local storage
+        localStorage.setItem("user", JSON.stringify(data.user)); // Update local storage
         alert("Profile updated successfully!");
         setIsEditing(false);
       } else {
@@ -173,13 +175,13 @@ const SProfile = () => {
             {isEditing ? (
               <input
                 type="text"
-                name="hostelBlock"
-                value={user.hostelBlock}
+                name="block"
+                value={user.block}
                 onChange={handleInputChange}
                 className="detail-input"
               />
             ) : (
-              <span className="detail-value">{user.hostelBlock}</span>
+              <span className="detail-value">{user.block}</span>
             )}
           </div>
 
@@ -188,13 +190,13 @@ const SProfile = () => {
             {isEditing ? (
               <input
                 type="text"
-                name="roomNumber"
-                value={user.roomNumber}
+                name="roomno"
+                value={user.roomno}
                 onChange={handleInputChange}
                 className="detail-input"
               />
             ) : (
-              <span className="detail-value">{user.roomNumber}</span>
+              <span className="detail-value">{user.roomno}</span>
             )}
           </div>
 
