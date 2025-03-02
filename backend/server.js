@@ -128,3 +128,9 @@ app.get("/api/admin/dashboard", async (req, res) => {
 app.get("/", (req, res) => {
   res.send("🚀 HostelAssist API is running...");
 });
+
+
+app.use("/api/admin", adminRoutes);
+// ✅ Register the complaints route
+app.use("/api", complaintRoutes); 
+

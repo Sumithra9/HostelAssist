@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import Font
 import { faUser } from '@fortawesome/free-solid-svg-icons'; // User icon
 import './SNavBar.css';
 
-const SNavBar = ({ scrollToRef, refs }) => {
+const SNavBar = ({ scrollToRef, refs , email}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

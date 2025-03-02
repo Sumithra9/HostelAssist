@@ -100,33 +100,37 @@ router.delete("/:id", async (req, res) => {
     }
   });
 
-
- router.get("/api/complaints", async (req, res) => {
-  try {
-    const { block, category } = req.query;
-
-    if (!block || !category) {
-      return res.status(400).json({ message: "Block and category are required" });
+  router.get("/complaints", async (req, res) => {
+    try {
+      let { block, category } = req.query;
+  
+      // Trim and ensure proper formatting
+      if (!block || !category) {
+        return res.status(400).json({ message: "Block and category are required" });
+      }
+  
+      block = block.trim();
+      category = category.trim();
+  
+      console.log(`🔹 Fetching complaints for Block: "${block}", Category: "${category}"`);
+  
+      // Use a case-insensitive exact match
+      const complaints = await Complaint.find({
+        hostelBlock: { $regex: `^${block}$`, $options: "i" },
+        complaintCategory: { $regex: `^${category}$`, $options: "i" },
+      });
+  
+      console.log(`✅ ${complaints.length} Complaints Found`);
+      res.json(complaints);
+    } catch (error) {
+      console.error("❌ Error fetching complaints:", error);
+      res.status(500).json({ message: "Server Error" });
     }
-
-    console.log("Filtering complaints for Block:", block, "Category:", category); // Debugging Line
-
-    // Ensure case-sensitive and exact match filtering
-    const complaints = await Complaint.find({
-      hostelBlock: block.trim(),  // Ensure it matches exactly
-      complaintCategory: category.trim(),
-    });
-
-    console.log("Filtered Complaints:", complaints); // Debugging Line
-    res.json(complaints);
-  } catch (error) {
-    console.error("Error fetching complaints:", error);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
-
+  });
+  
   
 
+  
 
 
 export default router; // ✅ Use 'export default' instead of 'module.exports'
