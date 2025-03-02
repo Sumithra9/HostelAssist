@@ -14,8 +14,8 @@ const ComplaintForm = () => {
   const [formData, setFormData] = useState({
     name: storedUser.name || "",
     email: storedUser.email || "",
-    roomNo: storedUser.roomno || "",
-    hostelBlock: storedUser.block || "",
+    roomno: storedUser.roomno || "",
+    block: storedUser.block || "",
     complaintCategory: selectedCategory,
     complaintDescription: "",
     availableDate: "",
@@ -40,8 +40,8 @@ const ComplaintForm = () => {
             ...prevData,
             name: data.name || storedUser.name,
             email: data.email || storedUser.email,
-            roomNo: data.roomno || storedUser.roomNo,
-            hostelBlock: data.block || storedUser.hostelBlock,
+            roomno: data.roomno || storedUser.roomno,
+            block: data.block || storedUser.block,
             complaintCategory: selectedCategory,
           }));
         }
@@ -114,12 +114,12 @@ const ComplaintForm = () => {
 
       <div className="form-group">
         <label>Room Number:</label>
-        <input type="text" name="roomNo" value={formData.roomNo} readOnly />
+        <input type="text" name="roomno" value={formData.roomno} readOnly />
       </div>
 
       <div className="form-group">
         <label>Hostel Block:</label>
-        <input type="text" name="hostelBlock" value={formData.hostelBlock} readOnly />
+        <input type="text" name="block" value={formData.block} readOnly />
       </div>
 
       <div className="form-group">
