@@ -3,24 +3,66 @@ import { useParams } from "react-router-dom";
 import "./AComplaintDetails.css";
 
 const AComplaintDetails = () => {
-  const { category, block } = useParams(); // Get category & block from URL
+  const { category, block } = useParams();
   const [complaints, setComplaints] = useState([]);
+  const [selectedComplaint, setSelectedComplaint] = useState(null);
+  const [otp, setOtp] = useState("");
 
   useEffect(() => {
-    console.log("Fetching complaints for:", block, category); // Debugging Line
-
     fetch(`http://localhost:5000/api/complaints?block=${block}&category=${category}`)
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Filtered complaints received:", data); // Debugging Line
-        setComplaints(
-          data.filter(complaint => 
-            complaint.hostelBlock === block && complaint.complaintCategory === category
-          )
-        );
-      })
+      .then((data) => setComplaints(data))
       .catch((error) => console.error("Error fetching complaints:", error));
   }, [block, category]);
+
+  const handleSendOtp = async (email, complaintId) => {
+    try {
+        const response = await fetch("http://localhost:5000/api/admin/send-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("OTP sent successfully!");
+            setSelectedComplaint(complaintId);
+        } else {
+            alert(data.message || "Failed to send OTP.");
+        }
+    } catch (error) {
+        console.error("Error sending OTP:", error);
+    }
+};
+
+const handleVerifyOtp = async () => {
+  if (!otp || !selectedComplaint) return alert("Please enter OTP");
+
+  try {
+      const response = await fetch("http://localhost:5000/api/admin/verify-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+              email: complaints.find(c => c._id === selectedComplaint).email, 
+              otp, 
+              complaintId: selectedComplaint 
+          }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+          alert("OTP verified! Complaint marked as Resolved.");
+          setComplaints(complaints.map(c => c._id === selectedComplaint ? { ...c, status: "Resolved" } : c));
+          setSelectedComplaint(null);
+          setOtp("");
+      } else {
+          alert(data.message || "Invalid OTP.");
+      }
+  } catch (error) {
+      console.error("Error verifying OTP:", error);
+  }
+};
+
 
   return (
     <div className="acomplaint-details-container">
@@ -28,13 +70,11 @@ const AComplaintDetails = () => {
 
       <table className="complaint-table">
         <thead>
-          <tr><th>Email ID</th><th>Student Name</th>
-            <th>Room No</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Posted Date</th>
-            <th>Available Date</th>
-            <th>Available Time</th>
+          <tr>
+            <th>Email</th><th>Student Name</th>
+            <th>Room No</th><th>Description</th>
+            <th>Status</th><th>Posted Date</th>
+            <th>Available Date</th><th>Available Time</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -46,17 +86,32 @@ const AComplaintDetails = () => {
                 <td>{complaint.name}</td>
                 <td>{complaint.roomNo}</td>
                 <td>{complaint.complaintDescription}</td>
-                <td>Pending</td> {/* You might want to add status logic later */}
+                <td>{complaint.status || "Pending"}</td>
                 <td>{new Date(complaint.postedDate).toLocaleDateString()}</td>
                 <td>{complaint.availableDate}</td>
                 <td>{complaint.availableTime}</td>
-                <td><button>Send OTP</button></td>
+                <td>
+                  {complaint.status === "Resolved" ? "✅ Resolved" : (
+                    <>
+                      <button onClick={() => handleSendOtp(complaint.email, complaint._id)}>Send OTP</button>
+                      {selectedComplaint === complaint._id && (
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Enter OTP"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                          />
+                          <button onClick={handleVerifyOtp}>Verify OTP</button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </td>
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="6">No complaints found for this category.</td>
-            </tr>
+            <tr><td colSpan="9">No complaints found.</td></tr>
           )}
         </tbody>
       </table>
