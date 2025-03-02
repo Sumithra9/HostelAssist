@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesome
-import { faUser } from "@fortawesome/free-solid-svg-icons"; // User icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "./AHeader.css";
 
 const AHeader = ({ onSignOut }) => {
@@ -10,10 +10,8 @@ const AHeader = ({ onSignOut }) => {
       <h1 id="logo">HostelAssist</h1>
 
       <div className="aheader-right">
-       
-
-        {/* Profile Icon with FontAwesome */}
-        <Link  className="profile-icon">
+        {/* Profile Icon with Link to Admin Profile Page */}
+        <Link className="profile-icon">
           <FontAwesomeIcon icon={faUser} className="icon" />
         </Link>
 

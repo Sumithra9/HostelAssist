@@ -27,6 +27,7 @@ const App = () => {
         <Route path="/admin-complaints/:block" element={<AComplaint />} />
         <Route path="/admin-complaints/:block/:category" element={<AComplaintDetails />} />
        
+
 </Routes>
 <Chatbot />
 
