@@ -8,12 +8,25 @@ const AComplaintDetails = () => {
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [otp, setOtp] = useState("");
 
+ 
+
+
   useEffect(() => {
+    console.log("Fetching complaints for:", block, category); // Debugging Line
+
     fetch(`http://localhost:5000/api/complaints?block=${block}&category=${category}`)
       .then((response) => response.json())
-      .then((data) => setComplaints(data))
+      .then((data) => {
+        console.log("Filtered complaints received:", data); // Debugging Line
+        setComplaints(
+          data.filter(complaint => 
+            complaint.hostelBlock === block && complaint.complaintCategory === category
+          )
+        );
+      })
       .catch((error) => console.error("Error fetching complaints:", error));
-  }, [block, category]);
+  }, [block, category]);
+  
 
   const handleSendOtp = async (email, complaintId) => {
     try {

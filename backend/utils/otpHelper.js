@@ -6,7 +6,7 @@ export const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toS
 
 export const sendOTP = async (email) => {
     const otp = generateOTP();
-    const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes validity
+    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes validity
     otpStore.set(email, { otp, expiresAt });
 
     const transporter = nodemailer.createTransport({
@@ -20,8 +20,8 @@ export const sendOTP = async (email) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Your OTP Code",
-        text: `Your OTP is: ${otp}. It will expire in 5 minutes.`,
+        subject: "Your OTP Code for Hostel Complaint",
+        text: `Your OTP is: ${otp}. It will expire in 10 minutes.`,
     };
 
     try {

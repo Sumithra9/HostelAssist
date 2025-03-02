@@ -131,3 +131,6 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/admin", adminRoutes);
+// ✅ Register the complaints route
+app.use("/api", complaintRoutes); 
+

@@ -12,7 +12,7 @@ const ComplaintSchema = new mongoose.Schema({
     availableTime: { type: String, required: true },
     filePath: { type: String }, // This will store the file path (if uploaded)
     status: { type: String, default: "Pending" }, // ✅ Default status as "Pending"
-  otp: String, // ✅ Temporary storage for OTP (can use Redis for better security)
+    otp: String, // ✅ Temporary storage for OTP (can use Redis for better security)
 });
 
 const Complaint = mongoose.model("Complaint", ComplaintSchema);
