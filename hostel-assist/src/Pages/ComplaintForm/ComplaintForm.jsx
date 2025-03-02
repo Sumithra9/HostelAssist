@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // ✅ Import useNavigate
-import "./ComplaintForm.css"; // Keep the original CSS
+import "./ComplaintForm.css"; // ✅ Import CSS for styling
 
 const ComplaintForm = () => {
   const location = useLocation();
@@ -101,44 +101,62 @@ const ComplaintForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="complaint-form">
-      <label>Name:</label>
-      <input type="text" name="name" value={formData.name} readOnly />
+      <h1>Complaint Form</h1>
+      <div className="form-group">
+        <label>Name:</label>
+        <input type="text" name="name" value={formData.name} readOnly />
+      </div>
 
-      <label>Email:</label>
-      <input type="text" name="email" value={formData.email} readOnly />
+      <div className="form-group">
+        <label>Email:</label>
+        <input type="text" name="email" value={formData.email} readOnly />
+      </div>
 
-      <label>Room Number:</label>
-      <input type="text" name="roomNo" value={formData.roomNo} readOnly />
+      <div className="form-group">
+        <label>Room Number:</label>
+        <input type="text" name="roomNo" value={formData.roomNo} readOnly />
+      </div>
 
-      <label>Hostel Block:</label>
-      <input type="text" name="hostelBlock" value={formData.hostelBlock} readOnly />
+      <div className="form-group">
+        <label>Hostel Block:</label>
+        <input type="text" name="hostelBlock" value={formData.hostelBlock} readOnly />
+      </div>
 
-      <label>Complaint Category:</label>
-      <select name="complaintCategory" value={formData.complaintCategory} onChange={handleInputChange}>
-        <option value="">Select Category</option>
-        <option value="AC">AC</option>
-        <option value="Plumber">Plumber</option>
-        <option value="Carpenter">Carpenter</option>
-        <option value="Water Cooler">Water Cooler</option>
-        <option value="Housekeeping">Housekeeping</option>
-        <option value="Electrician">Electrician</option>
-      </select>
+      <div className="form-group">
+        <label>Complaint Category:</label>
+        <select name="complaintCategory" value={formData.complaintCategory} onChange={handleInputChange}>
+          <option value="">Select Category</option>
+          <option value="AC">AC</option>
+          <option value="Plumber">Plumber</option>
+          <option value="Carpenter">Carpenter</option>
+          <option value="Water Cooler">Water Cooler</option>
+          <option value="Housekeeping">Housekeeping</option>
+          <option value="Electrician">Electrician</option>
+        </select>
+      </div>
 
-      <label>Description:</label>
-      <textarea name="complaintDescription" value={formData.complaintDescription} onChange={handleInputChange} />
+      <div className="form-group">
+        <label>Description:</label>
+        <textarea name="complaintDescription" value={formData.complaintDescription} onChange={handleInputChange} />
+      </div>
 
-      <label>Available Date:</label>
-      <input type="date" name="availableDate" value={formData.availableDate} onChange={handleInputChange} />
+      <div className="form-group">
+        <label>Available Date:</label>
+        <input type="date" name="availableDate" value={formData.availableDate} onChange={handleInputChange} />
+      </div>
 
-      <label>Available Time:</label>
-      <input type="time" name="availableTime" value={formData.availableTime} onChange={handleInputChange} />
+      <div className="form-group">
+        <label>Available Time:</label>
+        <input type="time" name="availableTime" value={formData.availableTime} onChange={handleInputChange} />
+      </div>
 
-      <label>Upload File (Optional):</label>
-      <input type="file" onChange={handleFileChange} />
+      <div className="form-group">
+        <label>Upload File (Optional):</label>
+        <input type="file" onChange={handleFileChange} />
+      </div>
 
       <button type="submit">Submit Complaint</button>
 
-      {/* ✅ Go Back Button */}
       <button type="button" onClick={() => navigate("/student")} className="go-back-button">
         Go Back
       </button>

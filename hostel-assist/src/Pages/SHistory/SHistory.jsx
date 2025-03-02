@@ -60,6 +60,7 @@ const Shistory = () => {
               <th>Category</th>
               <th>Description</th>
               <th>Available Date</th>
+              <th>Available Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -70,6 +71,7 @@ const Shistory = () => {
                 <td>{complaint.complaintCategory}</td>
                 <td>{complaint.complaintDescription}</td>
                 <td>{complaint.availableDate || "Not Provided"}</td>
+                <td>{complaint.availableTime}</td>
                 <td>{complaint.status || "Pending"}</td>
                 <td>
                   <button className="delete-btn" onClick={() => handleDelete(complaint._id)}>

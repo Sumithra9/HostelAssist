@@ -28,20 +28,21 @@ const AComplaintDetails = () => {
 
       <table className="complaint-table">
         <thead>
-          <tr><th>Student Name</th>
+          <tr><th>Email ID</th><th>Student Name</th>
             <th>Room No</th>
             <th>Description</th>
             <th>Status</th>
             <th>Posted Date</th>
             <th>Available Date</th>
             <th>Available Time</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {complaints.length > 0 ? (
             complaints.map((complaint) => (
               <tr key={complaint._id}>
-                {/* <td>{complaint.email}</td> */}
+                <td>{complaint.email}</td>
                 <td>{complaint.name}</td>
                 <td>{complaint.roomNo}</td>
                 <td>{complaint.complaintDescription}</td>
@@ -49,6 +50,7 @@ const AComplaintDetails = () => {
                 <td>{new Date(complaint.postedDate).toLocaleDateString()}</td>
                 <td>{complaint.availableDate}</td>
                 <td>{complaint.availableTime}</td>
+                <td><button>Send OTP</button></td>
               </tr>
             ))
           ) : (

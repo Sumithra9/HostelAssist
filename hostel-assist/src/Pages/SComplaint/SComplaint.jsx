@@ -11,7 +11,6 @@ const SComplaint = () => {
   return (
     <div className="scomplaint-container">
       <h1 id="maintxt">Post a Complaint</h1>
-      <br />
       <p className="description">Select a category below to report an issue</p>
       <br />
       <div className="complaint-options">
@@ -46,8 +45,6 @@ const SComplaint = () => {
           <span>Electrician</span>
         </Link>
       </div>
-
-      {/* Go Back Button */}
       <button className="go-back-btn" onClick={() => navigate("/student")}>
         Go Back
       </button>
